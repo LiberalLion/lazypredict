@@ -1,6 +1,7 @@
 """
 Supervised Models
 """
+
 # Author: Shankar Rao Pandala <shankar.pandala@live.com>
 
 import numpy as np
@@ -90,12 +91,18 @@ for i in removed_regressors:
 for i in removed_classifiers:
     CLASSIFIERS.pop(CLASSIFIERS.index(i))
 
-REGRESSORS.append(("XGBRegressor", xgboost.XGBRegressor))
-REGRESSORS.append(("LGBMRegressor", lightgbm.LGBMRegressor))
-# REGRESSORS.append(('CatBoostRegressor',catboost.CatBoostRegressor))
-
-CLASSIFIERS.append(("XGBClassifier", xgboost.XGBClassifier))
-CLASSIFIERS.append(("LGBMClassifier", lightgbm.LGBMClassifier))
+REGRESSORS.extend(
+    (
+        ("XGBRegressor", xgboost.XGBRegressor),
+        ("LGBMRegressor", lightgbm.LGBMRegressor),
+    )
+)
+CLASSIFIERS.extend(
+    (
+        ("XGBClassifier", xgboost.XGBClassifier),
+        ("LGBMClassifier", lightgbm.LGBMClassifier),
+    )
+)
 # CLASSIFIERS.append(('CatBoostClassifier',catboost.CatBoostClassifier))
 
 numeric_transformer = Pipeline(
